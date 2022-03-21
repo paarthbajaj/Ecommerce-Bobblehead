@@ -1,0 +1,69 @@
+.page-wrapper {
+  background-color: var(--gray-shade4);
+  padding-top: 5rem;
+}
+.filter-container {
+  position: absolute;
+  height: 100%;
+  width: 18vw;
+  left: 0.5vw;
+  background-color: var(--white);
+}
+.product-sort {
+  margin: 1rem;
+  width: 15vw;
+  padding: 1rem;
+  background: var(--white);
+}
+.products-listing {
+  margin-left: 20vw;
+  min-height: 100vh;
+}
+.list-container {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.product-card {
+  height: 22rem;
+  width: 17rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background-color: var(--white);
+  position: relative;
+}
+.card-img,
+.img-wrap {
+  height: 17rem;
+  width: 17rem;
+  object-fit: cover;
+}
+.img-wrap {
+  position: absolute;
+  z-index: 1;
+  background: var(--gray-shade5);
+  background: linear-gradient(
+    0deg,
+    rgba(237, 237, 237, 1) -50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.pd-btn {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 5.5rem;
+  z-index: 2;
+}
+.pd-wish-icon {
+  position: absolute;
+  z-index: 2;
+  top: 0.4rem;
+  right: 0.4rem;
+  color: var(--gray-shade4);
+  font-size: 1.4rem;
+}
+.pd-wish-icon:hover {
+  color: var(--red);
+}

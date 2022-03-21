@@ -1,0 +1,60 @@
+.hero-section {
+  overflow: hidden;
+}
+.hero-image {
+  object-fit: cover;
+  width: 100%;
+  height: 90vh;
+}
+
+.features-card {
+  justify-content: center;
+  padding: 1.5rem 0 3rem 0;
+  font-size: 1.3rem;
+}
+.divider {
+  color: var(--gray-shade2);
+  width: 1px;
+}
+.feature {
+  padding: 1rem 3rem;
+  align-items: center;
+}
+.feature .fa {
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+.feature h3 {
+  margin: 0.7rem 0;
+}
+
+.categories-card {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 5rem;
+  gap: 1rem;
+}
+.single-category {
+  position: relative;
+}
+.single-category h4 {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: var(--transaparent-grey);
+}
+
+.category-image {
+  object-fit: cover;
+  border-radius: 5px;
+  object-position: center bottom;
+  opacity: 0.8;
+}
+.card-hw {
+  min-width: 22rem;
+  max-width: 22rem;
+  min-height: 14.375rem;
+  max-height: 14.375rem;
+}

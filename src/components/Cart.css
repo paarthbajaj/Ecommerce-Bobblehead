@@ -1,0 +1,34 @@
+.col-green1 {
+    color: var(--green-shade1);
+  }
+  .col-blue1 {
+    color: var(--blue-shade1);
+  }
+  .ecom-pri-btn {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+  }
+  .border-bottom-1 {
+    border-bottom: 1px solid var(--gray-shade5);
+  }
+  .pd-cart-img {
+    max-width: 11rem;
+    min-width: 11rem;
+    object-fit: cover;
+  }
+  .card-ui {
+    background-color: var(--white);
+    padding: 1.25rem 1.25rem 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  .cart-price {
+    min-height: 13rem;
+  }
+  .empty-cart {
+    min-height: 70vh;
+  }
