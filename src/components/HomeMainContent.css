@@ -58,3 +58,52 @@
   min-height: 14.375rem;
   max-height: 14.375rem;
 }
+
+.ts-image {
+  background-color: var(--gray-shade1);
+  object-fit: cover;
+  border-radius: 5px;
+  min-height: 22rem;
+  max-height: 22rem;
+  min-width: 22rem;
+  max-width: 22rem;
+}
+.top-selling {
+  text-align: center;
+  margin: 5rem 0;
+}
+.ts-h5 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.25rem;
+}
+.featured-h3 {
+  font-size: 3.2rem;
+  margin-bottom: 1.25rem;
+  color: var(--dark-blue);
+}
+.ts-headline {
+  padding: 0 30%;
+  margin-bottom: 1.25rem;
+}
+.top-sell-cards {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 7rem;
+  gap: 1rem;
+}
+.ts-product h3 {
+  margin-top: 1.25rem;
+}
+.ts-product h3 a {
+  color: var(--black);
+}
+.ts-product h4 {
+  margin: 0.5rem 0 2rem 0;
+  color: var(--gray-shade3);
+}
+a {
+  text-decoration: none;
+}
