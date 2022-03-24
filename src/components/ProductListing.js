@@ -1,6 +1,11 @@
 import "./ProductListing.css";
+import { useCategoryContext } from "../context/CategoryContext";
+import { useProductContext } from "../context/ProductContext";
 
 const ProductListing = () => {
+  const { categoryList } = useCategoryContext();
+  const { state, dispatch, productsList } = useProductContext();
+
   return (
     <div>
       <main className="page-wrapper">
@@ -27,30 +32,15 @@ const ProductListing = () => {
           </div>
           <div className="product-sort flex-column l-radius">
             <h2>Categories</h2>
-            <label>
-              <input type="radio" name="categories" />
-              Marvel
-            </label>
-            <label>
-              <input type="radio" name="categories" />
-              DC
-            </label>
-            <label>
-              <input type="radio" name="categories" />
-              Anime
-            </label>
-            <label>
-              <input type="radio" name="categories" />
-              Keychains
-            </label>
-            <label>
-              <input type="radio" name="categories" />
-              Football
-            </label>
-            <label>
-              <input type="radio" name="categories" />
-              Pokemon
-            </label>
+            {categoryList &&
+              categoryList.map((item) => (
+                <>
+                  <label key={item._id}>
+                    <input type="radio" name="categories" />
+                    {item.categoryName}
+                  </label>
+                </>
+              ))}
           </div>
           <div className="product-sort flex-column l-radius">
             <h2>Rating</h2>
@@ -70,134 +60,24 @@ const ProductListing = () => {
         </div>
         <div className="products-listing">
           <div className="list-container flex-row">
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/captain-america-bobblehead.jpg"
-              />
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
+            {productsList.map((item) => (
+              <div className="product-card m-radius" key={item._id}>
+                <div className="img-wrap"></div>
+                <img className="card-img" src={item.productImage} />
+                <div className="card-content">
+                  <h3 className="cursor-pointer">{item.title}</h3>
+                  <h4>₹{item.price}</h4>
+                </div>
+                <button
+                  className="btn btn-secondary pd-btn"
+                  onClick={() => dispatch({ type: "addToCart", payload: item })}
+                >
+                  <i className="fa fa-bag-shopping"></i>
+                  Add
+                </button>
+                <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
               </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/ironman-bobblehead.png"
-              />
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/Naruto-bobblehead.jpg"
-              />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/pikachu-bobblehead.jpg"
-              />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/roanldo-bobblehead.jpg"
-              />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img
-                className="card-img"
-                src="./assets/images/Shinchan-bobblehead.jpg"
-              />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img className="card-img" src="./assets/images/krillin.jpg" />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
-            <div className="product-card m-radius">
-              <div className="img-wrap"></div>
-              <img className="card-img" src="./assets/images/batman.jpg" />
-
-              <div className="card-content">
-                <h3 className="cursor-pointer">Product 1</h3>
-                <h4>₹299</h4>
-              </div>
-              <button className="btn btn-secondary pd-btn">
-                <i className="fa fa-bag-shopping"></i>
-                Add
-              </button>
-              <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
-            </div>
+            ))}
           </div>
         </div>
       </main>
