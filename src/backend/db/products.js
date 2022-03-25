@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "Captain America Bobblehead",
+    title: "Capt. America Bobblehead",
     is_topSeller: "Yes",
     productImage: "/assets/images/captain-america-bobblehead.jpg",
     price: "299",
@@ -24,6 +24,22 @@ export const products = [
   },
   {
     _id: uuid(),
+    title: "Hulk Bobblehead",
+    is_topSeller: "No",
+    productImage: "/assets/images/hulk-bobblehead.jpg",
+    price: "298",
+    categoryName: "Marvel",
+  },
+  {
+    _id: uuid(),
+    title: "Spiderman Bobblehead",
+    is_topSeller: "No",
+    productImage: "/assets/images/spiderman.jpg",
+    price: "329",
+    categoryName: "Marvel",
+  },
+  {
+    _id: uuid(),
     title: "Ronaldo Bobblehead",
     is_topSeller: "Yes",
     productImage: "/assets/images/roanldo-bobblehead.jpg",
@@ -35,7 +51,7 @@ export const products = [
     title: "Pikachu Bobblehead",
     is_topSeller: "Yes",
     productImage: "/assets/images/pikachu-bobblehead.jpg",
-    price: "249",
+    price: "239",
     categoryName: "Pokemons",
   },
   {
@@ -43,7 +59,7 @@ export const products = [
     title: "Shinchan Bobblehead",
     is_topSeller: "No",
     productImage: "/assets/images/Shinchan-bobblehead.jpg",
-    price: "249",
+    price: "248",
     categoryName: "Anime",
   },
   {
@@ -56,10 +72,34 @@ export const products = [
   },
   {
     _id: uuid(),
+    title: "Krillin Bobblehead",
+    is_topSeller: "No",
+    productImage: "/assets/images/krillin.jpg",
+    price: "289",
+    categoryName: "Anime",
+  },
+  {
+    _id: uuid(),
+    title: "Charizard Bobblehead",
+    is_topSeller: "No",
+    productImage: "/assets/images/charizard.jpg",
+    price: "399",
+    categoryName: "Pokemons",
+  },
+  {
+    _id: uuid(),
     title: "Goku Bobblehead Keychain",
     is_topSeller: "Yes",
     productImage: "/assets/images/gokuKeychain.jpg",
     price: "349",
     categoryName: "Keychains",
+  },
+  {
+    _id: uuid(),
+    title: "Batman Bobblehead",
+    is_topSeller: "No",
+    productImage: "/assets/images/batman.jpg",
+    price: "328",
+    categoryName: "DC",
   },
 ];

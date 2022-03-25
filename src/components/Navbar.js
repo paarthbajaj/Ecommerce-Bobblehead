@@ -1,27 +1,20 @@
 import "./Navbar.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useCategoryContext } from "../context/CategoryContext";
 
 export const Navbar = () => {
+  const { categoryList } = useCategoryContext();
   return (
     <>
       <header className="desktop-header-container flex-row">
         <div className="logo-container brand-logo">Quirky Face</div>
         <nav className="top-navbar">
-          <a className="nav-items" href="#">
-            Marvel
-          </a>
-          <a className="nav-items" href="#">
-            DC
-          </a>
-          <a className="nav-items" href="#">
-            Anime
-          </a>
-          <a className="nav-items" href="#">
-            Football
-          </a>
-          <a className="nav-items" href="#">
-            Keychains
-          </a>
+          {categoryList &&
+            categoryList.map((item) => (
+              <a className="nav-items" href="#" key={item._id}>
+                {item.categoryName}
+              </a>
+            ))}
         </nav>
         <div className="search-bar flex-row">
           <a className="search-icon" href="#">
@@ -40,14 +33,14 @@ export const Navbar = () => {
           <div className="txt-center cursor-pointer action-wishlist">
             <Link to="/wishlist">
               <div className="fa fa-heart icon"></div>
-            <div className="icon-label">Wishlist</div>
+              <div className="icon-label">Wishlist</div>
             </Link>
           </div>
           <div className="txt-center cursor-pointer action-cart">
-            <a href="./cart.html">
+            <Link to="/cart">
               <div className="fa fa-bag-shopping icon"></div>
-            </a>
-            <div className="icon-label">Bag</div>
+              <div className="icon-label">Bag</div>
+            </Link>
           </div>
           <div className="txt-center cursor-pointer action-cart">
             <a href="./signout.html">

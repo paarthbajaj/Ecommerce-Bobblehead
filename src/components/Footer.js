@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -17,7 +18,7 @@ const Footer = () => {
           <h3>Links</h3>
           <a href="./index.html">Home</a>
           <a href="#">Categories</a>
-          <a href="#">Products</a>
+          <Link to="/products">Products</Link>
           <a href="#">Blog</a>
         </div>
         <div className="flex-column footer-col">
