@@ -9,43 +9,90 @@ import {
 } from "react";
 
 const ProductContext = createContext();
-const useProductContext = () => useContext(ProductContext);
 
 const ProductContextProvider = ({ children }) => {
   const [productsList, setProductsList] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const productData = await axios.get("/api/products");
-      setProductsList(productData.data.products);
-    })();
-  }, []);
-
+  const [priceFilter, setPriceFilter] = useState(50);
   const productReducer = (state, action) => {
     switch (action.type) {
-      case "addToCart":
+      case "ADD_ALL_PRODUCTS":
+        return { ...state, products: action.payload };
+      case "ADD_TO_CART":
         return {
           ...state,
           cart: [...state.cart, { ...action.payload, quantity: 1 }],
         };
-      case "removeFromCart":
+      case "REMOVE_FROM_CART":
         return {
           ...state,
           cart: state.cart.filter((item) => item._id !== action.payload._id),
         };
-      default:
-        return state;
+      case "FILTER_PRICE":
+        console.log({ state }, "11", action.payload, priceFilter);
+        setPriceFilter(() => action.payload.value);
+        return {
+          ...state,
+          products: action.payload.list.filter(
+            (c) => c.price <= action.payload.value
+          ),
+        };
+      case "LOW_TO_HIGH":
+        return {
+          ...state,
+          products: action.payload.sort((a, b) => {
+            return a.price - b.price;
+          }),
+        };
+      case "HIGH_TO_LOW":
+        return {
+          ...state,
+          products: action.payload.sort((a, b) => {
+            return b.price - a.price;
+          }),
+        };
+      case "CATEGORY_SORT":
+        return {
+          ...state,
+          products: action.payload.list.filter(
+            (c) => c.categoryName === action.payload.item.categoryName
+          ),
+        };
+      case "RATING":
+        return {
+          ...state,
+          products: state.products.filter(
+            (r) => r.rating >= action.payload.item
+          ),
+        };
+      case "CLEAR":
+        window.location.reload(false);
     }
   };
-
-  const [state, dispatch] = useReducer(productReducer, {
+  const [productState, productDispatch] = useReducer(productReducer, {
     cart: [],
+    wishlist: [],
+    products: productsList,
   });
+  useEffect(() => {
+    (async () => {
+      const productData = await axios.get("/api/products");
+      productState.products.length === 0 &&
+        productDispatch({
+          type: "ADD_ALL_PRODUCTS",
+          payload: productData.data.products,
+        });
+      setProductsList(productData.data.products);
+    })();
+  }, []);
 
   return (
-    <ProductContext.Provider value={{ productsList, state, dispatch }}>
+    <ProductContext.Provider
+      value={{ priceFilter, productsList, productState, productDispatch }}
+    >
       {children}
     </ProductContext.Provider>
   );
 };
+const useProductContext = () => useContext(ProductContext);
 
 export { ProductContextProvider, useProductContext };
