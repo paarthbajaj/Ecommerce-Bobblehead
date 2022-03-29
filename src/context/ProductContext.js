@@ -37,7 +37,6 @@ const ProductContextProvider = ({ children }) => {
           ),
         };
       case "FILTER_PRICE":
-        console.log({ state }, "11", action.payload, priceFilter);
         setPriceFilter(() => action.payload.value);
         return {
           ...state,

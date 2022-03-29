@@ -8,7 +8,6 @@ const HomeMainContent = () => {
     (async () => {
       try {
         const data = await axios.get("/api/categories");
-        console.log(data.data.categories);
         setCategoryList(data.data.categories);
       } catch (err) {
         console.log(err);
@@ -17,7 +16,6 @@ const HomeMainContent = () => {
     (async () => {
       try {
         const topSellingListData = await axios.get("/api/products");
-        console.log(topSellingListData.data.products);
         setTopSellingProductList(
           topSellingListData.data.products.filter(
             (item) => item.is_topSeller === "Yes"
@@ -65,7 +63,7 @@ const HomeMainContent = () => {
       </div>
       <div className="categories-card flex-row">
         {categoryList.map((item) => (
-          <div className="single-category card-hw">
+          <div className="single-category card-hw" key={item._id}>
             {/* <a href="#"> */}
             <img
               className="category-image card-hw"
@@ -90,7 +88,7 @@ const HomeMainContent = () => {
             //   if(item.is_topSeller==="Yes"){
 
             //   }
-            <div className="ts-product">
+            <div className="ts-product" key={item._id}>
               <a href="#">
                 <img className="ts-image" src={item.productImage} />
               </a>
