@@ -182,7 +182,12 @@ const ProductListing = () => {
                   <i className="fa fa-bag-shopping"></i>
                   Add
                 </button>
-                <i className="fa fa-heart icon pd-wish-icon cursor-pointer"></i>
+                <i
+                  className="fa fa-heart icon pd-wish-icon cursor-pointer"
+                  onClick={() =>
+                    productDispatch({ type: "ADD_TO_WISHLIST", payload: item })
+                  }
+                ></i>
               </div>
             ))}
           </div>

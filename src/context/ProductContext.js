@@ -27,6 +27,15 @@ const ProductContextProvider = ({ children }) => {
           ...state,
           cart: state.cart.filter((item) => item._id !== action.payload._id),
         };
+      case "ADD_TO_WISHLIST":
+        return { ...state, wishlist: [...state.wishlist, action.payload] };
+      case "REMOVE_FROM_WISHLIST":
+        return {
+          ...state,
+          wishlist: state.wishlist.filter(
+            (item) => item._id !== action.payload._id
+          ),
+        };
       case "FILTER_PRICE":
         console.log({ state }, "11", action.payload, priceFilter);
         setPriceFilter(() => action.payload.value);
@@ -75,13 +84,17 @@ const ProductContextProvider = ({ children }) => {
   });
   useEffect(() => {
     (async () => {
-      const productData = await axios.get("/api/products");
-      productState.products.length === 0 &&
-        productDispatch({
-          type: "ADD_ALL_PRODUCTS",
-          payload: productData.data.products,
-        });
-      setProductsList(productData.data.products);
+      try {
+        const productData = await axios.get("/api/products");
+        productState.products.length === 0 &&
+          productDispatch({
+            type: "ADD_ALL_PRODUCTS",
+            payload: productData.data.products,
+          });
+        setProductsList(productData.data.products);
+      } catch (err) {
+        console.log(err);
+      }
     })();
   }, []);
 
