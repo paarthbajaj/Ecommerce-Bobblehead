@@ -89,9 +89,6 @@ const HomeMainContent = () => {
         </p>
         <div className="top-sell-cards flex-row">
           {topSellingProductList.map((item) => (
-            //   if(item.is_topSeller==="Yes"){
-
-            //   }
             <div className="ts-product" key={item._id}>
               <a href="#">
                 <img className="ts-image" src={item.productImage} />
