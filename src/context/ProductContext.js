@@ -13,6 +13,11 @@ const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
   const [productsList, setProductsList] = useState([]);
   const [priceFilter, setPriceFilter] = useState(50);
+  const [toast, setToast] = useState({
+    showToast: true,
+    type: "",
+    message: "",
+  });
   const productReducer = (state, action) => {
     switch (action.type) {
       case "ADD_ALL_PRODUCTS":
@@ -26,6 +31,15 @@ const ProductContextProvider = ({ children }) => {
         return {
           ...state,
           cart: state.cart.filter((item) => item._id !== action.payload._id),
+        };
+      case "SET_PRODUCT_QUANTITY":
+        return {
+          ...state,
+          cart: state.cart.map((i) =>
+            i._id === action.payload.item._id
+              ? { ...i, quantity: action.payload.quantity }
+              : i
+          ),
         };
       case "ADD_TO_WISHLIST":
         return { ...state, wishlist: [...state.wishlist, action.payload] };
@@ -96,10 +110,52 @@ const ProductContextProvider = ({ children }) => {
       }
     })();
   }, []);
+  const addToCart = (item) => {
+    let flagCart;
+    productState?.cart?.find((i) => {
+      if (i._id === item._id) flagCart = true;
+    });
+    if (!flagCart) {
+      productDispatch({ type: "ADD_TO_CART", payload: item });
+      setToast({
+        ...toast,
+        showToast: true,
+        type: "alert-success",
+        message: "Product added into cart",
+      });
+    }
+  };
+  const addToWishlist = (item) => {
+    let flagWishlist;
+    productState?.wishlist?.find((i) => {
+      if (i._id === item._id) flagWishlist = true;
+    });
+    if (!flagWishlist) {
+      productDispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: item,
+      });
+      setToast({
+        ...toast,
+        showToast: true,
+        type: "alert-success",
+        message: "Product added into wishlist",
+      });
+    }
+  };
 
   return (
     <ProductContext.Provider
-      value={{ priceFilter, productsList, productState, productDispatch }}
+      value={{
+        priceFilter,
+        productsList,
+        productState,
+        productDispatch,
+        toast,
+        setToast,
+        addToCart,
+        addToWishlist,
+      }}
     >
       {children}
     </ProductContext.Provider>

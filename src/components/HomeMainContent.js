@@ -1,6 +1,7 @@
 import "./HomeMainContent.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const HomeMainContent = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [topSellingProductList, setTopSellingProductList] = useState([]);
@@ -35,6 +36,9 @@ const HomeMainContent = () => {
           src="/assets/images/bobblehead-banner.jpg"
           alt="banner"
         />
+        <Link to="/products">
+          <button className="ecom-pri-btn shop-now-btn">Shop Now</button>
+        </Link>
       </div>
       <div className="features-card flex-row">
         <div className="feature flex-row">

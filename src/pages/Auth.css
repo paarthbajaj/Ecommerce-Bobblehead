@@ -1,0 +1,36 @@
+.pt-5 {
+  padding-top: 5px;
+}
+
+.log-page {
+  background-color: var(--gray-shade4);
+}
+.log-main {
+  background-color: var(--white);
+  width: 40%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  box-shadow: rgba(149, 157, 165, 0.2) 0 0.5rem 1.5rem;
+}
+.log-page h1 {
+  padding-bottom: 3rem;
+}
+.log-input {
+  width: 20rem;
+}
+.or-divider:after,
+.or-divider:before {
+  content: "\2003\2003\2003\2003\2003\2003";
+  text-decoration: line-through;
+  color: var(--gray-shade3);
+}
+.centre-1 {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
