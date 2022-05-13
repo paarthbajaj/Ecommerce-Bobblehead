@@ -12,6 +12,10 @@
 .logo-container {
   margin-left: 3%;
   flex: 0 1 auto;
+  width: 11rem;
+}
+.logo-container a {
+  color: var(--blue-shade1);
 }
 .brand-logo {
   color: var(--blue-shade1);

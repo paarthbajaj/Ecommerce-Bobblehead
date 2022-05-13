@@ -7,7 +7,13 @@
   box-sizing: border-box;
   font-family: "Nunito Sans", sans-serif;
 }
-
+.ecom-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+}
 :root {
   --gray-shade1: #f5f5f6;
   --gray-shade2: #696e79;

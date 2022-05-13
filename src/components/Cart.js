@@ -6,10 +6,11 @@ const Cart = () => {
   const {
     productState: { cart },
     productDispatch,
+    toast,
+    setToast,
   } = useProductContext();
-
   const totalPriceCart = cart.reduce((acc, curr) => {
-    acc = acc + parseInt(curr.price);
+    acc = acc + parseInt(curr.price) * parseInt(curr.quantity);
     return acc;
   }, 0);
 
@@ -24,16 +25,28 @@ const Cart = () => {
             </div>
             {cart &&
               cart.map((item) => (
-                <div className="product-cart mtb-3-4 border-bottom-1 pb-1 flex-row">
+                <div
+                  className="product-cart mtb-3-4 border-bottom-1 pb-1 flex-row"
+                  key={item._id}
+                >
                   <img className="pd-cart-img" src={item.productImage} />
                   <div className="pd-cart-content pl-3-4 flex-column grow-1">
                     <span className="txt-5 fw-6 cursor-pointer">
                       {item.title}
                     </span>
                     <small>Eligible for FREE shipping</small>
-                    <label for="quantity" className="mt-1">
+                    <label htmlFor="quantity" className="mt-1">
                       Quantity:
-                      <select name="quantity" id="quantity">
+                      <select
+                        name="quantity"
+                        id="quantity"
+                        onChange={(e) =>
+                          productDispatch({
+                            type: "SET_PRODUCT_QUANTITY",
+                            payload: { item: item, quantity: e.target.value },
+                          })
+                        }
+                      >
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -43,22 +56,30 @@ const Cart = () => {
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
-                        <option value="10+">10+</option>
+                        <option value="10">10</option>
                       </select>
                     </label>
                     <span
-                      className="cursor-pointer col-blue1 mt-1"
-                      onClick={() =>
+                      className="cursor-pointer col-blue1 del-product mt-1"
+                      onClick={() => {
                         productDispatch({
                           type: "REMOVE_FROM_CART",
                           payload: item,
-                        })
-                      }
+                        });
+                        setToast({
+                          ...toast,
+                          showToast: true,
+                          type: "alert-danger",
+                          message: "Product removed from cart",
+                        });
+                      }}
                     >
                       Delete
                     </span>
                   </div>
-                  <div className="pd-cart-price">₹{item.price}</div>
+                  <div className="pd-cart-price">
+                    ₹{item.price * item.quantity}
+                  </div>
                 </div>
               ))}
           </div>

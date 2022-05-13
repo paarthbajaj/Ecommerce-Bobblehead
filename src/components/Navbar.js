@@ -3,17 +3,26 @@ import { Link } from "react-router-dom";
 import { useCategoryContext } from "../context/CategoryContext";
 
 export const Navbar = () => {
-  const { categoryList } = useCategoryContext();
+  const { categoryList, setCategoryPage } = useCategoryContext();
   return (
     <>
       <header className="desktop-header-container flex-row">
-        <div className="logo-container brand-logo">Quirky Face</div>
+        <div className="logo-container brand-logo">
+          <Link to="/home">Quirky Face</Link>
+        </div>
+
         <nav className="top-navbar">
           {categoryList &&
             categoryList.map((item) => (
-              <a className="nav-items" href="#" key={item._id}>
-                {item.categoryName}
-              </a>
+              <span
+                className="nav-items"
+                key={item._id}
+                onClick={() => setCategoryPage(item.categoryName)}
+              >
+                <Link to={`/category/${item.categoryName}`}>
+                  {item.categoryName}
+                </Link>
+              </span>
             ))}
         </nav>
         <div className="search-bar flex-row">
@@ -43,10 +52,10 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="txt-center cursor-pointer action-cart">
-            <a href="./signout.html">
+            <Link to="/signedout" onClick={() => localStorage.clear()}>
               <div className="fa fa-arrow-right-from-bracket col-red"></div>
-            </a>
-            <div className="icon-label col-red">Logout</div>
+              <div className="icon-label col-red">Logout</div>
+            </Link>
           </div>
         </div>
       </header>
