@@ -1,34 +1,43 @@
-Home Page
-I can see a landing page with a list of featured categories.
-If I click on any one of the categories I will be redirected to the product list page with the selected category.
-Product Listing Page
-I can see a product listing page where all the products are listed with a section of filters.
-I can see multiple filters on the product listing page including,
-Price: A radio button to sort from low to high & high to low.
-Category: A checkbox with various categories according to the theme.
-Ratings: A slider for ratings.
-I can see a button to clear filters from where I can clear all the applied filters.
-On the product cards, I can see two call-to-action buttons,
-Add to Cart: I can click on the "Add to Cart" primary button which will add the item to the cart & once added shows "Go to Cart" on the product card.
-Add to Wishlist: I can click on a "Add to Wishlist" secondary button or "Wishlist" secondary icon button where if I click adds the item in the wishlist & vice-verse.
-Cart Management
-From the navbar, I can navigate to the cart where all the products that I want to buy are mentioned.
-On the product card,
-I can see the quantity of a particular product.
-I can Increase or Decrease the quantity of a particular product.
-Remove the product from the cart
-Add the product to the Wishlist
-I can see the price details card of the cart containing a button to checkout which will show the total price of the products with its quantity.
-Wishlist Management
-From the navbar, I can navigate to my wishlist where all the products that I would like to buy are mentioned.
-On the product card,
-I can remove the item from the wishlist
-Add the item to the cart
-If the cart already contains that item, it's only increasing the quantity.
-Sign-up Page
-I can see a sign-up page from where I can sign-up using my email, first name, last name, password & confirm password.
-I can see a hide-show icon button that shows or hides my password.
-Login Page
-I can see a login page from where I can log in using my email & password.
-Logout
-I can see a logout button from where I can log out from the app on the header navbar.
+1.Home Page
+  
+    1.1 User can see a landing page with a list of featured products. 
+    
+    1.2 If user click on any category in Navbar, user will be redirected to category page.
+
+2. Product Listing Page
+
+    2.1 User can see a product listing page where all the products are listed with a section of filters.
+  
+    2.2 User can see multiple filters on the product listing page.
+  
+    2.3 On the product card, user can see two CTAs for add to art and wishlist.
+
+3. Cart Management
+
+    3.1 From the navbar, user can navigate to the cart where all the products that user want to buy are shown.
+  
+    3.2 User can see the quantity of a particular product.
+  
+    3.3 User can Increase or Decrease the quantity of a particular product.
+  
+    3.4 Remove the product from the cart.
+  
+    3.5 User can see the price details card of the cart containing a button to checkout which will show the total price of the products with its quantity.
+  
+4. Wishlist Management
+
+    4.1 From the navbar, User can navigate to my wishlist where all the products are shown.
+  
+    4.2 On the product card, user can remove the item from the wishlist and add the item to cart.
+
+5. Sign-up Page
+
+    5.1 User can see a sign-up page from where user can sign-up using  email, name, password & confirm password.
+
+6. Login Page
+
+    6.1 User can see a login page from where user can log in using email & password.
+
+7. Logout
+
+    7.1 User can see a logout button from where user can log out from the app on the navbar.
