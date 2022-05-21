@@ -189,7 +189,14 @@ const ProductListing = () => {
                   className={` fa fa-heart icon  cursor-pointer pd-wish-icon ${
                     productState.wishlist.includes(item) ? "pd_wishlisted" : ""
                   }`}
-                  onClick={() => addToWishlist(item)}
+                  onClick={() => {
+                    productState.wishlist.includes(item)
+                      ? productDispatch({
+                          type: "REMOVE_FROM_WISHLIST",
+                          payload: item,
+                        })
+                      : addToWishlist(item);
+                  }}
                 ></i>
               </div>
             ))}

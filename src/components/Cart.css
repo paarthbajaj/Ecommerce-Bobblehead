@@ -4,6 +4,9 @@
 .col-blue1 {
   color: var(--blue-shade1);
 }
+.col-red {
+  color: var(--red);
+}
 .del-product {
   width: 4rem;
 }

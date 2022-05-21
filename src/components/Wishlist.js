@@ -9,6 +9,7 @@ const Wishlist = () => {
     productDispatch,
     toast,
     setToast,
+    addToCart,
   } = useProductContext();
   return (
     <div>
@@ -47,12 +48,10 @@ const Wishlist = () => {
                   </div>
                   <button
                     className="btn btn-secondary pd-btn"
-                    onClick={() =>
-                      productDispatch({ type: "ADD_TO_CART", payload: item })
-                    }
+                    onClick={() => addToCart(item)}
                   >
                     <i className="fa fa-bag-shopping"></i>
-                    Move
+                    Add
                   </button>
                 </div>
               ))}
