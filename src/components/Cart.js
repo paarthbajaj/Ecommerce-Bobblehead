@@ -4,6 +4,7 @@ import "./Cart.css";
 
 const Cart = () => {
   const {
+    productState,
     productState: { cart },
     productDispatch,
     toast,
@@ -59,23 +60,52 @@ const Cart = () => {
                         <option value="10">10</option>
                       </select>
                     </label>
-                    <span
-                      className="cursor-pointer col-blue1 del-product mt-1"
-                      onClick={() => {
-                        productDispatch({
-                          type: "REMOVE_FROM_CART",
-                          payload: item,
-                        });
-                        setToast({
-                          ...toast,
-                          showToast: true,
-                          type: "alert-danger",
-                          message: "Product removed from cart",
-                        });
-                      }}
-                    >
-                      Delete
-                    </span>
+                    <div className="mt-1">
+                      <span
+                        className="col-blue1 cursor-pointer mr-1"
+                        onClick={() => {
+                          productDispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: item,
+                          });
+                          let flagWishlist;
+                          productState?.wishlist?.find((i) => {
+                            if (i._id === item._id) flagWishlist = true;
+                          });
+                          if (!flagWishlist) {
+                            productDispatch({
+                              type: "ADD_TO_WISHLIST",
+                              payload: item,
+                            });
+                            setToast({
+                              ...toast,
+                              showToast: true,
+                              type: "alert-success",
+                              message: "Product moved to wishlist",
+                            });
+                          }
+                        }}
+                      >
+                        Move to Wishlist
+                      </span>
+                      <span
+                        className="cursor-pointer col-red del-product"
+                        onClick={() => {
+                          productDispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: item,
+                          });
+                          setToast({
+                            ...toast,
+                            showToast: true,
+                            type: "alert-danger",
+                            message: "Product removed from cart",
+                          });
+                        }}
+                      >
+                        Delete
+                      </span>
+                    </div>
                   </div>
                   <div className="pd-cart-price">
                     ₹{item.price * item.quantity}
