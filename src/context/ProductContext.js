@@ -93,6 +93,12 @@ const ProductContextProvider = ({ children }) => {
         setProductsList(productData.data.products);
       } catch (err) {
         console.log(err);
+        setToast({
+          ...toast,
+          showToast: true,
+          type: "alert-danger",
+          message: "Something went wrong",
+        });
       }
     })();
   }, []);

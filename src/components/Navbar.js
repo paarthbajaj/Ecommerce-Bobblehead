@@ -27,8 +27,10 @@ export const Navbar = () => {
         </div>
         <div className="header-actions flex-row">
           <div className="txt-center cursor-pointer action-user">
-            <div className="fa fa-user icon"></div>
-            <div className="icon-label">Profile</div>
+            <Link to="/products">
+              <div className="fa fa-store icon"></div>
+              <div className="icon-label">Products</div>
+            </Link>
           </div>
           <div className="txt-center cursor-pointer action-wishlist">
             <Link to="/wishlist">
