@@ -4,8 +4,14 @@ import { useProductContext } from "../context/ProductContext";
 
 const ProductListing = () => {
   const { categoryList } = useCategoryContext();
-  const { priceFilter, productState, productDispatch, productsList } =
-    useProductContext();
+  const {
+    priceFilter,
+    productState,
+    productDispatch,
+    productsList,
+    addToCart,
+    addToWishlist,
+  } = useProductContext();
   const ratingSort = (event) => {
     productDispatch({
       type: "RATING",
@@ -19,7 +25,6 @@ const ProductListing = () => {
 
   return (
     <div>
-      {console.log(productState, "11", productsList)}
       <main className="page-wrapper">
         <div className="filter-container m-radius flex-column">
           <button
@@ -175,18 +180,23 @@ const ProductListing = () => {
                 </div>
                 <button
                   className="btn btn-secondary pd-btn"
-                  onClick={() =>
-                    productDispatch({ type: "ADD_TO_CART", payload: item })
-                  }
+                  onClick={() => addToCart(item)}
                 >
                   <i className="fa fa-bag-shopping"></i>
                   Add
                 </button>
                 <i
-                  className="fa fa-heart icon pd-wish-icon cursor-pointer"
-                  onClick={() =>
-                    productDispatch({ type: "ADD_TO_WISHLIST", payload: item })
-                  }
+                  className={` fa fa-heart icon  cursor-pointer pd-wish-icon ${
+                    productState.wishlist.includes(item) ? "pd_wishlisted" : ""
+                  }`}
+                  onClick={() => {
+                    productState.wishlist.includes(item)
+                      ? productDispatch({
+                          type: "REMOVE_FROM_WISHLIST",
+                          payload: item,
+                        })
+                      : addToWishlist(item);
+                  }}
                 ></i>
               </div>
             ))}

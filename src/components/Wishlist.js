@@ -7,6 +7,9 @@ const Wishlist = () => {
   const {
     productState: { wishlist },
     productDispatch,
+    toast,
+    setToast,
+    addToCart,
   } = useProductContext();
   return (
     <div>
@@ -27,24 +30,28 @@ const Wishlist = () => {
                     <h4>₹{item.price}</h4>
                     <button
                       className="remove-btn txt-6 cursor-pointer"
-                      onClick={() =>
+                      onClick={() => {
                         productDispatch({
                           type: "REMOVE_FROM_WISHLIST",
                           payload: item,
-                        })
-                      }
+                        });
+                        setToast({
+                          ...toast,
+                          showToast: true,
+                          type: "alert-danger",
+                          message: "Product removed from wishlist",
+                        });
+                      }}
                     >
                       Remove
                     </button>
                   </div>
                   <button
                     className="btn btn-secondary pd-btn"
-                    onClick={() =>
-                      productDispatch({ type: "ADD_TO_CART", payload: item })
-                    }
+                    onClick={() => addToCart(item)}
                   >
                     <i className="fa fa-bag-shopping"></i>
-                    Move
+                    Add
                   </button>
                 </div>
               ))}
