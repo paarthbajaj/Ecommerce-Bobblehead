@@ -69,3 +69,46 @@
 .pd_wishlisted {
   color: var(--red);
 }
+.info-message {
+  margin: 0 auto;
+}
+@media only screen and (max-width: 450px) {
+  .filter-container {
+    flex-direction: row;
+    align-items: baseline;
+    left: 0;
+    width: auto;
+    position: relative;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+  }
+  .product-sort {
+    order: -1;
+    width: auto;
+    padding: 0;
+  }
+  .list-container {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .products-listing {
+    margin-left: 0;
+    min-height: auto;
+  }
+  .product-card {
+    height: auto;
+    width: 45%;
+  }
+  .card-img,
+  .img-wrap {
+    height: 12rem;
+    width: 12rem;
+  }
+  .pd-btn {
+    bottom: 7rem;
+  }
+  .page-wrapper {
+    flex-direction: column;
+  }
+}

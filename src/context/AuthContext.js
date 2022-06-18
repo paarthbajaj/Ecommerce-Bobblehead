@@ -19,8 +19,7 @@ const AuthProvider = ({ children }) => {
       console.log(err);
     }
   };
-  const signinHandler = async (e) => {
-    e.preventDefault();
+  const signinHandler = async () => {
     try {
       const data = await axios.post("/api/auth/login", {
         email: authState.email,
@@ -32,8 +31,7 @@ const AuthProvider = ({ children }) => {
       console.log(err);
     }
   };
-  const signupHandler = async (e) => {
-    e.preventDefault();
+  const signupHandler = async () => {
     try {
       const data = await axios.post("/api/auth/signup", {
         email: authState.email,

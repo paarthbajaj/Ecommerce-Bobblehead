@@ -5,4 +5,7 @@
 <li class="has-line-data" data-line-start="3" data-line-end="4">Changed the favicon</li>
 <li class="has-line-data" data-line-start="4" data-line-end="5">Added toast for error in get products api</li>
 <li class="has-line-data" data-line-start="5" data-line-end="6">Changed unused CTAs</li>
+<li class="has-line-data" data-line-start="6" data-line-end="7">Added responsiveness</li>
+<li class="has-line-data" data-line-start="7" data-line-end="8">Added search feature</li>
+<li class="has-line-data" data-line-start="8" data-line-end="9">Changed auth error messages which earlier were  showing below the input fields</li>
 </ol>

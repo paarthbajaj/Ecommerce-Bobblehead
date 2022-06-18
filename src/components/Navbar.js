@@ -1,9 +1,12 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCategoryContext } from "../context/CategoryContext";
+import { useProductContext } from "../context/ProductContext";
 
 export const Navbar = () => {
+  const location = useLocation();
   const { categoryList, setCategoryPage } = useCategoryContext();
+  const { productState, productDispatch } = useProductContext();
   return (
     <>
       <header className="desktop-header-container flex-row">
@@ -25,15 +28,40 @@ export const Navbar = () => {
               </span>
             ))}
         </nav>
-        <div className="search-bar flex-row">
-          <a className="search-icon" href="#">
-            <span className="fa fa-search"></span>
-          </a>
-          <input
-            className="input-search-bar"
-            placeholder="Search for products, categories and more"
-          />
-        </div>
+        {location.pathname == "/products" && (
+          <div className="search-bar flex-row">
+            <a className="search-icon" href="#">
+              <span className="fa fa-search"></span>
+            </a>
+            <input
+              className="input-search-bar"
+              placeholder="Search for products"
+              value={productState.searchValue}
+              onChange={(e) => {
+                let searchResult = [];
+                let productsListCopy = productState.products;
+                for (let i = 0; i < productState.products?.length - 1; i++) {
+                  let flag = productsListCopy.find(
+                    (note) =>
+                      note.title
+                        .toLowerCase()
+                        .search(e.target.value.toLowerCase()) != -1
+                  );
+                  if (flag) {
+                    productsListCopy = productsListCopy.filter(
+                      (i) => i._id !== flag._id
+                    );
+                    searchResult.push(flag);
+                  }
+                }
+                productDispatch({
+                  type: "SET_SEARCH",
+                  payload: { value: e.target.value, result: searchResult },
+                });
+              }}
+            />
+          </div>
+        )}
         <div className="header-actions flex-row">
           <div className="txt-center cursor-pointer action-user">
             <Link to="/products">

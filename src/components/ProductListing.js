@@ -12,6 +12,10 @@ const ProductListing = () => {
     addToCart,
     addToWishlist,
   } = useProductContext();
+  let productsArray =
+    productState.searchValue == ""
+      ? productState.products
+      : productState.searchResult;
   const ratingSort = (event) => {
     productDispatch({
       type: "RATING",
@@ -170,36 +174,47 @@ const ProductListing = () => {
         </div>
         <div className="products-listing">
           <div className="list-container flex-row">
-            {productState.products.map((item) => (
-              <div className="product-card m-radius" key={item._id}>
-                <div className="img-wrap"></div>
-                <img className="card-img" src={item.productImage} />
-                <div className="card-content">
-                  <h3 className="cursor-pointer">{item.title}</h3>
-                  <h4>₹{item.price}</h4>
+            {productsArray.length > 0 ? (
+              productsArray.map((item) => (
+                <div className="product-card m-radius" key={item._id}>
+                  <div className="img-wrap"></div>
+                  <img className="card-img" src={item.productImage} />
+                  <div className="card-content">
+                    <h3 className="cursor-pointer">{item.title}</h3>
+                    <h4>₹{item.price}</h4>
+                  </div>
+                  <button
+                    className="btn btn-secondary pd-btn"
+                    onClick={() => addToCart(item)}
+                  >
+                    <i className="fa fa-bag-shopping"></i>
+                    Add
+                  </button>
+                  <i
+                    className={` fa fa-heart icon  cursor-pointer pd-wish-icon ${
+                      productState.wishlist.includes(item)
+                        ? "pd_wishlisted"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      productState.wishlist.includes(item)
+                        ? productDispatch({
+                            type: "REMOVE_FROM_WISHLIST",
+                            payload: item,
+                          })
+                        : addToWishlist(item);
+                    }}
+                  ></i>
                 </div>
-                <button
-                  className="btn btn-secondary pd-btn"
-                  onClick={() => addToCart(item)}
-                >
-                  <i className="fa fa-bag-shopping"></i>
-                  Add
-                </button>
-                <i
-                  className={` fa fa-heart icon  cursor-pointer pd-wish-icon ${
-                    productState.wishlist.includes(item) ? "pd_wishlisted" : ""
-                  }`}
-                  onClick={() => {
-                    productState.wishlist.includes(item)
-                      ? productDispatch({
-                          type: "REMOVE_FROM_WISHLIST",
-                          payload: item,
-                        })
-                      : addToWishlist(item);
-                  }}
-                ></i>
-              </div>
-            ))}
+              ))
+            ) : (
+              <h4 className="info-message">
+                {productState.searchResult?.length == 0 &&
+                productState.searchValue !== ""
+                  ? "No products found for the provided search"
+                  : ""}
+              </h4>
+            )}
           </div>
         </div>
       </main>

@@ -45,3 +45,18 @@
 .empty-cart {
   min-height: 70vh;
 }
+@media only screen and (max-width: 450px) {
+  .cart {
+    margin-left: 0;
+  }
+  .shop-now-btn {
+    font-size: 1rem;
+    right: 30%;
+  }
+  .card-ui {
+    margin-bottom: 0;
+  }
+  .cart-price {
+    min-height: auto;
+  }
+}
