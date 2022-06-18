@@ -107,3 +107,49 @@
 a {
   text-decoration: none;
 }
+@media only screen and (max-width: 450px) {
+  .hero-section {
+    height: auto;
+    background: none;
+  }
+  .hero-image {
+    height: auto;
+  }
+  .features-card {
+    font-size: 1rem;
+    padding: 0;
+  }
+  .feature {
+    padding: 0 0.4rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  .feature .fa {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+  .feature span {
+    font-size: 0.8rem;
+  }
+  .categories-card {
+    padding: 0;
+    margin-top: 2rem;
+  }
+  .featured-h3 {
+    font-size: 2rem;
+  }
+  .ts-headline {
+    padding: 0 3rem;
+  }
+  .ts-image {
+    min-width: 11rem;
+    min-height: 11rem;
+    max-height: 11rem;
+  }
+  .top-sell-cards {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

@@ -14,7 +14,7 @@
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  box-shadow: rgba(149, 157, 165, 0.2) 0 0.5rem 1.5rem;
+  box-shadow: rgb(149 157 165 / 68%) 0 0.5rem 1.5rem;
 }
 .log-page h1 {
   padding-bottom: 3rem;
@@ -33,4 +33,14 @@
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
+}
+@media only screen and (max-width: 450px) {
+  .log-main {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 1000px) and (min-width: 451px) {
+  .log-main {
+    width: 65%;
+  }
 }

@@ -9,3 +9,9 @@
   bottom: 5px;
   right: 5px;
 }
+@media only screen and (max-width: 450px) {
+  .wishlist-products {
+    padding: 0;
+    justify-content: center;
+  }
+}

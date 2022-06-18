@@ -4,16 +4,17 @@ import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
 
 export const Signin = () => {
-  const { guestLoginHandler, authDispatch, signinHandler } = useAuth();
+  const { guestLoginHandler, authDispatch, signinHandler, authState } =
+    useAuth();
   return (
     <>
       <AuthHeader />
       <main className="log-main m-radius">
-        <h1 className="txt-center">Login to your account</h1>
+        <h1 className="txt-center pb-1">Login to your account</h1>
         <form className="log-form flex-column g-1 align-center justify-center">
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="email"
               placeholder="Email"
               required
@@ -25,10 +26,9 @@ export const Signin = () => {
           </label>
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="password"
               placeholder="Password"
-              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
               required
               onChange={(e) =>
                 authDispatch({ type: "EDIT_PASSWORD", payload: e.target.value })
@@ -42,7 +42,14 @@ export const Signin = () => {
           <button
             className="ecom-pri-btn"
             type="submit"
-            onClick={signinHandler}
+            onClick={(e) => {
+              e.preventDefault();
+              authState.email !== "" || authState.password !== "" ? (
+                signinHandler()
+              ) : (
+                <></>
+              );
+            }}
           >
             Sign In
           </button>

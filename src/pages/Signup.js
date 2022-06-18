@@ -4,16 +4,16 @@ import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
 
 export const Signup = () => {
-  const { authDispatch, signupHandler } = useAuth();
+  const { authDispatch, signupHandler, authState } = useAuth();
   return (
     <>
       <AuthHeader />
       <main className="log-main m-radius">
-        <h1 className="txt-center">Sign Up to Quirky Face</h1>
+        <h1 className="txt-center pb-1">Sign Up to Quirky Face</h1>
         <form className="log-form flex-column g-1 align-center justify-center">
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="text"
               placeholder="Name"
               required
@@ -25,7 +25,7 @@ export const Signup = () => {
           </label>
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="email"
               placeholder="Email"
               required
@@ -37,10 +37,9 @@ export const Signup = () => {
           </label>
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="password"
               placeholder="Password"
-              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
               required
               onChange={(e) =>
                 authDispatch({ type: "EDIT_PASSWORD", payload: e.target.value })
@@ -53,10 +52,9 @@ export const Signup = () => {
           </label>
           <label className="log-input">
             <input
-              className="input log-input req-input"
+              className="input log-input"
               type="password"
               placeholder="Confirm Password"
-              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
               required
               onChange={(e) =>
                 authDispatch({
@@ -73,7 +71,17 @@ export const Signup = () => {
           <button
             className="ecom-pri-btn"
             type="submit"
-            onClick={signupHandler}
+            onClick={(e) => {
+              e.preventDefault();
+              authState.name !== "" ||
+              authState.email !== "" ||
+              authState.password !== "" ||
+              authState.confirm_password !== "" ? (
+                signupHandler()
+              ) : (
+                <></>
+              );
+            }}
           >
             Sign Up
           </button>

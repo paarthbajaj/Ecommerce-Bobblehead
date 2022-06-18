@@ -86,6 +86,12 @@ const ProductContextProvider = ({ children }) => {
             (r) => r.rating >= action.payload.item
           ),
         };
+      case "SET_SEARCH":
+        return {
+          ...state,
+          searchValue: action.payload.value,
+          searchResult: action.payload.result,
+        };
       case "CLEAR":
         window.location.reload(false);
     }
@@ -94,6 +100,8 @@ const ProductContextProvider = ({ children }) => {
     cart: [],
     wishlist: [],
     products: productsList,
+    searchValue: "",
+    searchResult: [],
   });
   useEffect(() => {
     (async () => {
