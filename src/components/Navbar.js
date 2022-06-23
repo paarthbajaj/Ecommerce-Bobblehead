@@ -71,13 +71,21 @@ export const Navbar = () => {
           </div>
           <div className="txt-center cursor-pointer action-wishlist">
             <Link to="/wishlist">
-              <div className="fa fa-heart icon"></div>
+              <div className="fa fa-heart icon">
+                <span className="wishlist-cnt flex-row-center-center">
+                  {productState.wishlist.length}
+                </span>
+              </div>
               <div className="icon-label">Wishlist</div>
             </Link>
           </div>
           <div className="txt-center cursor-pointer action-cart">
             <Link to="/cart">
-              <div className="fa fa-bag-shopping icon"></div>
+              <div className="fa fa-bag-shopping icon">
+                <span className="cart-cnt flex-row-center-center">
+                  {productState.cart.length}
+                </span>
+              </div>
               <div className="icon-label">Bag</div>
             </Link>
           </div>

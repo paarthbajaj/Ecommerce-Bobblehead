@@ -32,6 +32,11 @@ const ProductContextProvider = ({ children }) => {
           ...state,
           cart: state.cart.filter((item) => item._id !== action.payload._id),
         };
+      case "REMOVE_ALL_FROM_CART":
+        return {
+          ...state,
+          cart: [],
+        };
       case "SET_PRODUCT_QUANTITY":
         return {
           ...state,
@@ -93,7 +98,7 @@ const ProductContextProvider = ({ children }) => {
           searchResult: action.payload.result,
         };
       case "CLEAR":
-        window.location.reload(false);
+        return { ...state, products: productsList };
     }
   };
   const [productState, productDispatch] = useReducer(productReducer, {

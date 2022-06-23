@@ -48,7 +48,19 @@ const Wishlist = () => {
                   </div>
                   <button
                     className="btn btn-secondary pd-btn"
-                    onClick={() => addToCart(item)}
+                    onClick={() => {
+                      addToCart(item);
+                      productDispatch({
+                        type: "REMOVE_FROM_WISHLIST",
+                        payload: item,
+                      });
+                      setToast({
+                        ...toast,
+                        showToast: true,
+                        type: "alert-success",
+                        message: "Product added to cart",
+                      });
+                    }}
                   >
                     <i className="fa fa-bag-shopping"></i>
                     Add

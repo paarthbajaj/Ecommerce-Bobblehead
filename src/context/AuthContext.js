@@ -2,10 +2,12 @@ import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { users } from "../backend/db/users";
+import { useProductContext } from "./ProductContext";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const { toast, setToast } = useProductContext();
   let navigate = useNavigate();
   const guestLoginHandler = async () => {
     try {
@@ -29,6 +31,12 @@ const AuthProvider = ({ children }) => {
       data.status == "200" && navigate("/home");
     } catch (err) {
       console.log(err);
+      setToast({
+        ...toast,
+        showToast: true,
+        type: "alert-danger",
+        message: err.response.data.errors[0],
+      });
     }
   };
   const signupHandler = async () => {
