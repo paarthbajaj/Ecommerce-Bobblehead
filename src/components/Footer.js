@@ -16,10 +16,9 @@ const Footer = () => {
         </div>
         <div className="flex-column footer-col">
           <h3>Links</h3>
-          <a href="./index.html">Home</a>
-          <a href="#">Categories</a>
+          <Link to="/home">Home</Link>
           <Link to="/products">Products</Link>
-          <a href="#">Blog</a>
+          <Link to="/cart">Cart</Link>
         </div>
         <div className="flex-column footer-col">
           <h3>Social Media</h3>

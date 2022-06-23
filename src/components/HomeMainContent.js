@@ -2,8 +2,10 @@ import "./HomeMainContent.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useCategoryContext } from "../context/CategoryContext";
 const HomeMainContent = () => {
   const [categoryList, setCategoryList] = useState([]);
+  const { setCategoryPage } = useCategoryContext();
   const [topSellingProductList, setTopSellingProductList] = useState([]);
   useEffect(() => {
     (async () => {
@@ -67,15 +69,19 @@ const HomeMainContent = () => {
       </div>
       <div className="categories-card flex-row">
         {categoryList.map((item) => (
-          <div className="single-category card-hw" key={item._id}>
-            {/* <a href="#"> */}
-            <img
-              className="category-image card-hw"
-              src={item.categoryImage}
-              alt={item.categoryName}
-            />
-            {/* </a> */}
-            <h4>{item.categoryName}</h4>
+          <div
+            className="single-category card-hw"
+            key={item._id}
+            onClick={() => setCategoryPage(item.categoryName)}
+          >
+            <Link to={`/category/${item.categoryName}`}>
+              <img
+                className="category-image card-hw"
+                src={item.categoryImage}
+                alt={item.categoryName}
+              />
+              <h4>{item.categoryName}</h4>
+            </Link>
           </div>
         ))}
       </div>
@@ -90,12 +96,8 @@ const HomeMainContent = () => {
         <div className="top-sell-cards flex-row">
           {topSellingProductList.map((item) => (
             <div className="ts-product" key={item._id}>
-              <a href="#">
-                <img className="ts-image" src={item.productImage} />
-              </a>
-              <h3>
-                <a href="#">{item.title}</a>
-              </h3>
+              <img className="ts-image" src={item.productImage} />
+              <h3>{item.title}</h3>
               <h4>₹{item.price}</h4>
             </div>
           ))}

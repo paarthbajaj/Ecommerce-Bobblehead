@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useCategoryContext } from "../context/CategoryContext";
 import { useProductContext } from "../context/ProductContext";
 
@@ -8,6 +9,7 @@ export const CategoryPage = () => {
   const CategoryPageProducts = productState.products.filter(
     (i) => i.categoryName === categoryPage
   );
+  const navigate = useNavigate();
   return (
     <>
       <main className="page-wrapper">
@@ -23,10 +25,16 @@ export const CategoryPage = () => {
                 </div>
                 <button
                   className="btn btn-secondary pd-btn"
-                  onClick={() => addToCart(item)}
+                  onClick={() =>
+                    productState.cart?.map((i) => i._id).includes(item._id)
+                      ? navigate("/cart")
+                      : addToCart(item)
+                  }
                 >
                   <i className="fa fa-bag-shopping"></i>
-                  Add
+                  {productState.cart?.map((i) => i._id).includes(item._id)
+                    ? " Cart"
+                    : " Add"}
                 </button>
                 {console.log(productState.wishlist, item)}
                 <i

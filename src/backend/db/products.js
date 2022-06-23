@@ -14,6 +14,7 @@ export const products = [
     rating: 5,
     price: "299",
     categoryName: "Marvel",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -23,6 +24,7 @@ export const products = [
     rating: 4,
     price: "499",
     categoryName: "Marvel",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -32,6 +34,7 @@ export const products = [
     rating: 3,
     price: "298",
     categoryName: "Marvel",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -41,6 +44,7 @@ export const products = [
     rating: 2,
     price: "329",
     categoryName: "Marvel",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -50,6 +54,7 @@ export const products = [
     rating: 1,
     price: "309",
     categoryName: "Football",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -59,6 +64,7 @@ export const products = [
     rating: 5,
     price: "239",
     categoryName: "Pokemons",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -68,6 +74,7 @@ export const products = [
     rating: 4,
     price: "248",
     categoryName: "Anime",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -77,6 +84,7 @@ export const products = [
     rating: 3,
     price: "249",
     categoryName: "Anime",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -86,6 +94,7 @@ export const products = [
     rating: 2,
     price: "289",
     categoryName: "Anime",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -95,6 +104,7 @@ export const products = [
     rating: 1,
     price: "399",
     categoryName: "Pokemons",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -104,6 +114,7 @@ export const products = [
     rating: 5,
     price: "349",
     categoryName: "Keychains",
+    quantity: "",
   },
   {
     _id: uuid(),
@@ -113,5 +124,6 @@ export const products = [
     rating: 4,
     price: "328",
     categoryName: "DC",
+    quantity: "",
   },
 ];

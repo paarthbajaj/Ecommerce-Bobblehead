@@ -1,10 +1,24 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthHeader } from "../components/AuthHeader";
 import { useAuth } from "../context/AuthContext";
+import { useProductContext } from "../context/ProductContext";
 import "./Auth.css";
 
+const emailValidation =
+  /[_A-Za-z0-9\-+]+(\.[_A-Za-z0-9\-]+)*@[A-Za-z0-9\-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,3})/;
 export const Signup = () => {
   const { authDispatch, signupHandler, authState } = useAuth();
+  const { toast, setToast } = useProductContext();
+  useEffect(() => {
+    authDispatch({ type: "EDIT_NAME", payload: "" });
+    authDispatch({ type: "EDIT_EMAIL", payload: "" });
+    authDispatch({ type: "EDIT_PASSWORD", payload: "" });
+    authDispatch({
+      type: "EDIT_CONFIRM_PASSWORD",
+      payload: "",
+    });
+  }, []);
   return (
     <>
       <AuthHeader />
@@ -73,14 +87,46 @@ export const Signup = () => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              authState.name !== "" ||
-              authState.email !== "" ||
-              authState.password !== "" ||
-              authState.confirm_password !== "" ? (
-                signupHandler()
-              ) : (
-                <></>
-              );
+              if (
+                authState.name == "" ||
+                authState.email == "" ||
+                authState.password == "" ||
+                authState.confirm_password == ""
+              )
+                setToast({
+                  ...toast,
+                  showToast: true,
+                  type: "alert-warning",
+                  message: "Please fill the fields",
+                });
+              else if (!emailValidation.test(authState.email))
+                setToast({
+                  ...toast,
+                  showToast: true,
+                  type: "alert-warning",
+                  message: "Please enter the valid email",
+                });
+              else if (authState.password.length < 7)
+                setToast({
+                  ...toast,
+                  showToast: true,
+                  type: "alert-warning",
+                  message: "Password must of 8 or more characters",
+                });
+              else if (authState.password !== authState.confirm_password)
+                setToast({
+                  ...toast,
+                  showToast: true,
+                  type: "alert-warning",
+                  message: "Passwords must be same",
+                });
+              else if (
+                authState.name !== "" ||
+                authState.email !== "" ||
+                authState.password !== "" ||
+                authState.confirm_password !== ""
+              )
+                signupHandler();
             }}
           >
             Sign Up

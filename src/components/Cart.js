@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
 import "./Cart.css";
 
@@ -14,6 +14,7 @@ const Cart = () => {
     acc = acc + parseInt(curr.price) * parseInt(curr.quantity);
     return acc;
   }, 0);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -131,7 +132,23 @@ const Cart = () => {
                 <span className="txt-5">Subtotal ({cart.length} item):</span>
                 <span className="txt-5 fw-6"> ₹{totalPriceCart}</span>
               </div>
-              <button className="ecom-pri-btn mt-1">Proceed to Buy</button>
+              <button
+                className="ecom-pri-btn mt-1"
+                onClick={() => {
+                  productDispatch({
+                    type: "REMOVE_ALL_FROM_CART",
+                  });
+                  setToast({
+                    ...toast,
+                    showToast: true,
+                    type: "alert-success",
+                    message: "Order placed ✔",
+                  });
+                  navigate("/products");
+                }}
+              >
+                Proceed to Buy
+              </button>
             </div>
           </div>
         </main>

@@ -1,9 +1,11 @@
 import "./ProductListing.css";
 import { useCategoryContext } from "../context/CategoryContext";
 import { useProductContext } from "../context/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductListing = () => {
   const { categoryList } = useCategoryContext();
+  const navigate = useNavigate();
   const {
     priceFilter,
     productState,
@@ -33,9 +35,7 @@ const ProductListing = () => {
         <div className="filter-container m-radius flex-column">
           <button
             className="ecom-pri-btn"
-            onClick={() =>
-              productDispatch({ type: "CLEAR", payload: productsList })
-            }
+            onClick={() => productDispatch({ type: "CLEAR" })}
           >
             Clear Filters
           </button>
@@ -185,10 +185,16 @@ const ProductListing = () => {
                   </div>
                   <button
                     className="btn btn-secondary pd-btn"
-                    onClick={() => addToCart(item)}
+                    onClick={() =>
+                      productState.cart?.map((i) => i._id).includes(item._id)
+                        ? navigate("/cart")
+                        : addToCart(item)
+                    }
                   >
                     <i className="fa fa-bag-shopping"></i>
-                    Add
+                    {productState.cart?.map((i) => i._id).includes(item._id)
+                      ? " Cart"
+                      : " Add"}
                   </button>
                   <i
                     className={` fa fa-heart icon  cursor-pointer pd-wish-icon ${

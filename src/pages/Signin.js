@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthHeader } from "../components/AuthHeader";
 import { useAuth } from "../context/AuthContext";
+import { useProductContext } from "../context/ProductContext";
 import "./Auth.css";
 
 export const Signin = () => {
   const { guestLoginHandler, authDispatch, signinHandler, authState } =
     useAuth();
+  const { toast, setToast } = useProductContext();
+  useEffect(() => {
+    authDispatch({ type: "EDIT_EMAIL", payload: "" });
+    authDispatch({ type: "EDIT_PASSWORD", payload: "" });
+  }, []);
   return (
     <>
       <AuthHeader />
@@ -44,11 +51,14 @@ export const Signin = () => {
             type="submit"
             onClick={(e) => {
               e.preventDefault();
-              authState.email !== "" || authState.password !== "" ? (
-                signinHandler()
-              ) : (
-                <></>
-              );
+              authState.email == "" || authState.password == ""
+                ? setToast({
+                    ...toast,
+                    showToast: true,
+                    type: "alert-warning",
+                    message: "Please fill the fields",
+                  })
+                : signinHandler();
             }}
           >
             Sign In
